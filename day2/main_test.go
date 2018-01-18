@@ -8,6 +8,12 @@ var testSheet = [][]int{
 	2: []int{2, 4, 6, 8},
 }
 
+var testSheet2 = [][]int{
+	0: []int{5, 9, 2, 8},
+	1: []int{9, 4, 7, 3},
+	2: []int{3, 8, 6, 5},
+}
+
 func TestStoi(t *testing.T) {
 	s := []string{"1", "2", "3"}
 	res := satoia(s)
@@ -22,6 +28,14 @@ func TestStoi(t *testing.T) {
 func TestPart1(t *testing.T) {
 	res := part1(testSheet)
 	exp := 18
+	if res != exp {
+		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
+	}
+}
+
+func TestPart2(t *testing.T) {
+	res := part2(testSheet2)
+	exp := 9
 	if res != exp {
 		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
 	}

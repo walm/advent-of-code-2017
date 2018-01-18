@@ -39,6 +39,20 @@ func part1(sheet [][]int) (n int) {
 	return
 }
 
+func part2(sheet [][]int) (n int) {
+	for _, r := range sheet {
+		for _, c := range r {
+			for _, cn := range r {
+				if c != cn && c%cn == 0 {
+					a := c / cn
+					n += a
+				}
+			}
+		}
+	}
+	return
+}
+
 func main() {
 	sheet := [][]int{}
 	input, _ := ioutil.ReadFile("input.txt")
@@ -48,4 +62,5 @@ func main() {
 		sheet = append(sheet, cols)
 	}
 	fmt.Printf("Part1 sum: %d\n", part1(sheet))
+	fmt.Printf("Part2 sum: %d\n", part2(sheet))
 }
