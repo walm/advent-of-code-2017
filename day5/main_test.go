@@ -21,3 +21,12 @@ func TestPart1_1(t *testing.T) {
 		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
 	}
 }
+
+func TestPart2_1(t *testing.T) {
+	maze := []int{0, 3, 0, 1, -3}
+	res := part2(maze)
+	exp := 10
+	if res != exp {
+		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
+	}
+}
