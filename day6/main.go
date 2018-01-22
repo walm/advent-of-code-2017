@@ -75,8 +75,27 @@ func part1(blocks []int) (j int) {
 	return
 }
 
+func part2(blocks []int) (j int) {
+	done := map[string]int{
+		sjoin(blocks): 0,
+	}
+	for {
+		j++
+		i, _ := indexAndMax(blocks)
+		blocks = redist(blocks, i)
+		bs := sjoin(blocks)
+		if n := done[bs]; n > 0 {
+			j -= n
+			return
+		}
+		done[bs] = j
+	}
+	return
+}
+
 func main() {
 	input, _ := ioutil.ReadFile("input.txt")
 	blocks := satoia(strings.Split(strings.Trim(string(input), "\n"), "\t"))
 	fmt.Printf("Part1: %d\n", part1(blocks))
+	fmt.Printf("Part2: %d\n", part2(blocks))
 }

@@ -47,3 +47,12 @@ func TestPart1_1(t *testing.T) {
 		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
 	}
 }
+
+func TestPart2_1(t *testing.T) {
+	b := []int{0, 2, 7, 0}
+	res := part2(b)
+	exp := 4
+	if res != exp {
+		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
+	}
+}
