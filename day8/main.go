@@ -20,8 +20,9 @@ func parseRow(s string) (n, f string, v int, lv, o string, rv int) {
 	return
 }
 
-func part1(rows []string) int {
+func parseVars(rows []string) (int, int) {
 	vars := map[string]int{}
+	max := 0
 	for _, r := range rows {
 		if r == "" {
 			continue
@@ -52,19 +53,34 @@ func part1(rows []string) int {
 			} else {
 				vars[n] = vars[n] - v
 			}
+			if vars[n] > max {
+				max = vars[n]
+			}
 		}
 	}
-	max := 0
+	largest := 0
 	for _, v := range vars {
-		if v > max {
-			max = v
+		if v > largest {
+			largest = v
 		}
 	}
-	return max
+	return largest, max
+}
+
+func part1(rows []string) int {
+	l, _ := parseVars(rows)
+	return l
+}
+
+func part2(rows []string) int {
+	_, m := parseVars(rows)
+	return m
 }
 
 func main() {
 	input, _ := ioutil.ReadFile("input.txt")
 	rows := strings.Split(string(input), "\n")
-	fmt.Printf("Part1: %d\n", part1(rows))
+	l, m := parseVars(rows)
+	fmt.Printf("Part1: %d\n", l)
+	fmt.Printf("Par21: %d\n", m)
 }

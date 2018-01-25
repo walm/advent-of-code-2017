@@ -29,3 +29,11 @@ func TestPart1_1(t *testing.T) {
 		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
 	}
 }
+
+func TestPart2_1(t *testing.T) {
+	res := part2(testRows)
+	exp := 10
+	if res != exp {
+		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
+	}
+}
