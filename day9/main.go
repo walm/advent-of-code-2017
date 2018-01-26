@@ -6,10 +6,11 @@ import (
 	"strings"
 )
 
-func part1(data string) int {
+func parse(data string) (int, int) {
 	score := 0
 	level := 0
 	garbage := false
+	gcount := 0
 	skip := false
 	for _, c := range strings.Split(data, "") {
 
@@ -26,23 +27,42 @@ func part1(data string) int {
 			if c == "}" {
 				level -= 1
 			}
+			if c == "<" {
+				garbage = true
+				continue
+			}
 		}
 
-		if c == "<" {
-			garbage = true
-		}
 		if c == ">" {
 			garbage = false
+			continue
 		}
 		if c == "!" {
 			skip = true
+			continue
+		}
+
+		if garbage && !skip {
+			gcount += 1
 		}
 	}
+	return score, gcount
+}
+
+func part1(data string) int {
+	score, _ := parse(data)
 	return score
+}
+
+func part2(data string) int {
+	_, g := parse(data)
+	return g
 }
 
 func main() {
 	input, _ := ioutil.ReadFile("input.txt")
 	data := string(input)
-	fmt.Printf("Part1: %d\n", part1(data))
+	score, garbage := parse(data)
+	fmt.Printf("Part1: %d\n", score)
+	fmt.Printf("Part2: %d\n", garbage)
 }

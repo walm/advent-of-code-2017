@@ -65,3 +65,21 @@ func TestPart1_8(t *testing.T) {
 		t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
 	}
 }
+
+func TestPart2(t *testing.T) {
+	tests := map[string]int{
+		"<>": 0,
+		"<random characters>": 17,
+		"<<<<>":               3,
+		"<{!>}>":              2,
+		"<!!>":                0,
+		"<!!!>>":              0,
+		`<{o"i!a,<{i<a>`:      10,
+	}
+	for d, exp := range tests {
+		res := part2(d)
+		if res != exp {
+			t.Errorf("result missmatch, got: %d, expect: %d.", res, exp)
+		}
+	}
+}
